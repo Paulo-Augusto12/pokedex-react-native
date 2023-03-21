@@ -6,7 +6,8 @@
     "dev": "prettier --write src . && expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "apk": "eas build -p android --profile preview"
   },
   "dependencies": {
     "expo": "~48.0.6",
