@@ -6,6 +6,7 @@ import axios from "axios";
 export function useHome() {
   const [pokemonsList, setPokemonstList] = useState<Result[]>([]);
   const [selectedPokemon, setSelectedPokemon] = useState<IPokemonDTO>();
+  const [requestError, setRequestError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [offset, setOffset] = useState(0);
 
@@ -33,14 +34,12 @@ export function useHome() {
 
   async function searchPokemon() {
     const pokemonURL = `https://pokeapi.co/api/v2/pokemon/${searchPokemonValue.toLowerCase()}`;
-    console.log(pokemonURL);
     const response = await axios.get(pokemonURL);
 
-    console.log(response.data);
-    if (response.status !== 404) {
-      setSelectedPokemon(response.data);
+    if (response.status === 404) {
+      setRequestError(true);
     } else {
-      return null;
+      setSelectedPokemon(response.data);
     }
   }
 
@@ -50,16 +49,13 @@ export function useHome() {
 
   useEffect(() => {
     if (!searchPokemonValue.trim()) {
-      setSelectedPokemon(undefined)
+      setSelectedPokemon(undefined);
       setLoading(true);
       setOffset(0);
       getPokemons();
       setLoading(false);
     }
   }, [searchPokemonValue]);
-  useEffect(()=>{
-    console.log(searchPokemonValue.trim().length)
-  })
 
   return {
     selectedPokemon,
@@ -70,5 +66,7 @@ export function useHome() {
     searchPokemonValue,
     setSearchPokemonValue,
     searchPokemon,
+    requestError,
+    setRequestError,
   };
 }

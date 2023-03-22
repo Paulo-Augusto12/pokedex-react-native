@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   FlatList,
   ActivityIndicator,
+  Keyboard,
 } from "react-native";
 import { styles } from "./styles";
 import { MagnifyingGlass, SlidersHorizontal } from "phosphor-react-native";
@@ -34,7 +35,7 @@ export function Home() {
           <View style={styles.searchActions}>
             <TouchableOpacity
               style={styles.filterButton}
-              onPress={() => hook.searchPokemon()}
+              onPress={() => {hook.searchPokemon(); Keyboard.dismiss()}}
             >
               <MagnifyingGlass size={30} color="#ffff" />
             </TouchableOpacity>
@@ -44,6 +45,7 @@ export function Home() {
           </View>
         </View>
       </View>
+      {hook.requestError && <Text>Erro</Text>}
       {hook.selectedPokemon ? (
         <View
           style={{
