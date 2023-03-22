@@ -5,22 +5,29 @@ import { styles } from "./style";
 
 interface IPokemonCard {
   pokemonName: string;
+  pokemonIndexImg: number;
 }
-export function PokemonCard({ pokemonName }: IPokemonCard) {
+export function PokemonCard({ pokemonName, pokemonIndexImg }: IPokemonCard) {
   return (
     <TouchableOpacity>
       <View style={styles.container}>
         <View style={styles.imageContainer}>
           <Image
             source={{
-              uri: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+              uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonIndexImg}.png`,
             }}
             style={{ height: 109, width: 105 }}
           />
         </View>
         <View style={styles.pokemonData}>
           <Text>{pokemonName}</Text>
-          <Text>001</Text>
+          {pokemonIndexImg < 10 ? (
+            <Text>00{pokemonIndexImg}</Text>
+          ) : pokemonIndexImg < 100 ? (
+            <Text>0{pokemonIndexImg}</Text>
+          ) : (
+            <Text>{pokemonIndexImg}</Text>
+          )}
         </View>
       </View>
     </TouchableOpacity>
