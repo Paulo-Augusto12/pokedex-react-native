@@ -4,38 +4,20 @@ import {
   TextInput,
   TouchableOpacity,
   FlatList,
+  ActivityIndicator,
 } from "react-native";
 import { styles } from "./styles";
 import { SlidersHorizontal } from "phosphor-react-native";
 import { PokemonCard } from "../../components/PokemonCard";
+import { useHome } from "./useHome";
 
 export function Home() {
-  const data = [
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-  ];
+  const hook = useHome();
   return (
     <View style={styles.container}>
       <View style={styles.pokemonListWrapper}>
         <FlatList
-          data={data}
+          data={hook.pokemonsList}
           ListHeaderComponent={() => (
             <View style={styles.hederContainer}>
               <View style={styles.header}>
@@ -57,16 +39,25 @@ export function Home() {
               </View>
             </View>
           )}
-          renderItem={({ item }) => <PokemonCard />}
+          renderItem={({ item }) => <PokemonCard pokemonName={item.name} />}
           numColumns={2}
           ItemSeparatorComponent={() => <View style={{ padding: 20 }} />}
           columnWrapperStyle={{ gap: 20 }}
-          showsVerticalScrollIndicator={false}
-          onEndReached={() => {
-            console.log("aaaaa");
-          }}
+          showsVerticalScrollIndicator={true}
+          onEndReached={hook.getPokemons}
           contentContainerStyle={{ alignItems: "center", gap: 30 }}
-          onEndReachedThreshold={0.2}
+          onEndReachedThreshold={0.7}
+          ListFooterComponent={() => (
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                flex: 1,
+              }}
+            >
+              <ActivityIndicator size={30} color="#BAC0D4" />
+            </View>
+          )}
         />
       </View>
     </View>
