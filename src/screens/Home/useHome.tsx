@@ -9,6 +9,8 @@ export function useHome() {
   const [loading, setLoading] = useState(false);
   const [offset, setOffset] = useState(0);
 
+  const [searchPokemonValue, setSearchPokemonValue] = useState("");
+
   const baseUrl = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`;
 
   async function getPokemons() {
@@ -29,9 +31,35 @@ export function useHome() {
     setLoading(false);
   }
 
+  async function searchPokemon() {
+    const pokemonURL = `https://pokeapi.co/api/v2/pokemon/${searchPokemonValue.toLowerCase()}`;
+    console.log(pokemonURL);
+    const response = await axios.get(pokemonURL);
+
+    console.log(response.data);
+    if (response.status !== 404) {
+      setSelectedPokemon(response.data);
+    } else {
+      return null;
+    }
+  }
+
   useEffect(() => {
     getPokemons();
   }, []);
+
+  useEffect(() => {
+    if (!searchPokemonValue.trim()) {
+      setSelectedPokemon(undefined)
+      setLoading(true);
+      setOffset(0);
+      getPokemons();
+      setLoading(false);
+    }
+  }, [searchPokemonValue]);
+  useEffect(()=>{
+    console.log(searchPokemonValue.trim().length)
+  })
 
   return {
     selectedPokemon,
@@ -39,5 +67,8 @@ export function useHome() {
     getPokemons,
     pokemonsList,
     loading,
+    searchPokemonValue,
+    setSearchPokemonValue,
+    searchPokemon,
   };
 }

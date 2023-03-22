@@ -43,8 +43,8 @@ export const styles = StyleSheet.create({
   },
 
   searchActions: {
-    flexDirection: 'row',
-    gap: 12
+    flexDirection: "row",
+    gap: 12,
   },
 
   filterButton: {
