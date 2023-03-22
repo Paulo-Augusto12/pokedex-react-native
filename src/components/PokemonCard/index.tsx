@@ -3,7 +3,10 @@ import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { styles } from "./style";
 
-export function PokemonCard() {
+interface IPokemonCard {
+  pokemonName: string;
+}
+export function PokemonCard({ pokemonName }: IPokemonCard) {
   return (
     <TouchableOpacity>
       <View style={styles.container}>
@@ -16,7 +19,7 @@ export function PokemonCard() {
           />
         </View>
         <View style={styles.pokemonData}>
-          <Text>Bullbasaur</Text>
+          <Text>{pokemonName}</Text>
           <Text>001</Text>
         </View>
       </View>
