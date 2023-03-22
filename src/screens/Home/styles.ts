@@ -9,6 +9,10 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 18,
   },
 
+  hederContainer: {
+    gap: 67,
+  },
+
   header: {
     paddingTop: 70,
     gap: 6,
@@ -27,7 +31,6 @@ export const styles = StyleSheet.create({
   },
 
   searchBarContainer: {
-    marginTop: 67,
     flexDirection: "row",
     gap: 20,
   },
@@ -36,7 +39,7 @@ export const styles = StyleSheet.create({
     backgroundColor: theme.colors.LIGHT_GRAY,
     padding: 6,
     borderRadius: 10,
-    width: "85%",
+    flex: 1,
   },
 
   filterButton: {
@@ -46,5 +49,9 @@ export const styles = StyleSheet.create({
     backgroundColor: theme.colors.HARD_GRAY,
     justifyContent: "center",
     alignItems: "center",
+  },
+
+  pokemonListWrapper: {
+    marginTop: 67,
   },
 });
