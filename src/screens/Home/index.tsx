@@ -10,6 +10,7 @@ import { styles } from "./styles";
 import { SlidersHorizontal } from "phosphor-react-native";
 import { PokemonCard } from "../../components/PokemonCard";
 import { useHome } from "./useHome";
+import { LoadingComponent } from "../../components/Loading";
 
 export function Home() {
   const hook = useHome();
@@ -39,25 +40,17 @@ export function Home() {
               </View>
             </View>
           )}
-          renderItem={({ item }) => <PokemonCard pokemonName={item.name} />}
+          renderItem={({ item }) => (
+            <PokemonCard pokemonName={item.name} pokemonIndexImg={item.id} />
+          )}
           numColumns={2}
-          ItemSeparatorComponent={() => <View style={{ padding: 20 }} />}
+          ItemSeparatorComponent={() => <View style={{ padding: 10 }} />}
           columnWrapperStyle={{ gap: 20 }}
-          showsVerticalScrollIndicator={true}
+          showsVerticalScrollIndicator={false}
           onEndReached={hook.getPokemons}
           contentContainerStyle={{ alignItems: "center", gap: 30 }}
-          onEndReachedThreshold={0.7}
-          ListFooterComponent={() => (
-            <View
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-                flex: 1,
-              }}
-            >
-              <ActivityIndicator size={30} color="#BAC0D4" />
-            </View>
-          )}
+          onEndReachedThreshold={0.1}
+          ListFooterComponent={<LoadingComponent loading={hook.loading} />}
         />
       </View>
     </View>
