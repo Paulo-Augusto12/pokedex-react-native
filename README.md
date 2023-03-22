@@ -1,1 +1,1 @@
-# pokedex-react-native
+# Pokedex-react-native
