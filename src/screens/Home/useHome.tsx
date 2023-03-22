@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { IPokemonDTO } from "../../api/DTO/IPokemonDTO";
-import axios from "axios";
 import { Result } from "../../api/DTO/IInitialResultDTO";
+import axios from "axios";
+
 export function useHome() {
-  const [pokemons, setPokemons] = useState<IPokemonDTO[]>([]);
   const [pokemonsList, setPokemonstList] = useState<Result[]>([]);
-  const [index, setIndex] = useState(0);
   const [selectedPokemon, setSelectedPokemon] = useState<IPokemonDTO>();
   const [loading, setLoading] = useState(false);
   const [offset, setOffset] = useState(0);
@@ -35,7 +34,6 @@ export function useHome() {
   }, []);
 
   return {
-    pokemons,
     selectedPokemon,
     setSelectedPokemon,
     getPokemons,
