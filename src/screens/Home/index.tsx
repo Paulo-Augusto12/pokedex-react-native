@@ -12,9 +12,13 @@ export function Home() {
         </Text>
       </View>
       <View style={styles.searchBarContainer}>
-        <TextInput placeholder="Name or number" style={styles.searchBar} placeholderTextColor={'#6C757D'}/>
+        <TextInput
+          placeholder="Name or number"
+          style={styles.searchBar}
+          placeholderTextColor={"#6C757D"}
+        />
         <TouchableOpacity style={styles.filterButton}>
-          <SlidersHorizontal size={35} color="#ffff"/>
+          <SlidersHorizontal size={35} color="#ffff" />
         </TouchableOpacity>
       </View>
     </View>
