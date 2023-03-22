@@ -9,15 +9,15 @@ export const styles = StyleSheet.create({
     backgroundColor: "#CFD4BA",
     width: 156,
     height: 260,
-    flex: 1
+    flex: 1,
   },
   imageContainer: {
-   overflow: 'hidden'
+    overflow: "hidden",
   },
 
   pokemonData: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 10
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 10,
   },
 });
