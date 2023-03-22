@@ -7,7 +7,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { styles } from "./styles";
-import { SlidersHorizontal } from "phosphor-react-native";
+import { MagnifyingGlass, SlidersHorizontal } from "phosphor-react-native";
 import { PokemonCard } from "../../components/PokemonCard";
 import { useHome } from "./useHome";
 import { LoadingComponent } from "../../components/Loading";
@@ -34,9 +34,14 @@ export function Home() {
                   style={styles.searchBar}
                   placeholderTextColor={"#6C757D"}
                 />
-                <TouchableOpacity style={styles.filterButton}>
-                  <SlidersHorizontal size={35} color="#ffff" />
-                </TouchableOpacity>
+                <View style={styles.searchActions}>
+                  <TouchableOpacity style={styles.filterButton}>
+                    <MagnifyingGlass size={30} color="#ffff"/>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.filterButton}>
+                    <SlidersHorizontal size={30} color="#ffff" />
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
           )}

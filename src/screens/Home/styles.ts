@@ -42,6 +42,11 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
 
+  searchActions: {
+    flexDirection: 'row',
+    gap: 12
+  },
+
   filterButton: {
     width: 37,
     height: 37,
