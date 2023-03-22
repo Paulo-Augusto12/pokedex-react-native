@@ -35,7 +35,10 @@ export function Home() {
           <View style={styles.searchActions}>
             <TouchableOpacity
               style={styles.filterButton}
-              onPress={() => {hook.searchPokemon(); Keyboard.dismiss()}}
+              onPress={() => {
+                hook.searchPokemon();
+                Keyboard.dismiss();
+              }}
             >
               <MagnifyingGlass size={30} color="#ffff" />
             </TouchableOpacity>
