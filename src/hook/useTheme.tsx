@@ -36,8 +36,8 @@ export function useTheme() {
     {
       type: "poison",
       color: "#0f4c5c",
-      nameColor: "",
-      nationalNumberColor: "",
+      nameColor: "#DAE2EA",
+      nationalNumberColor: "#B8B9BB",
     },
     {
       type: "ground",
@@ -48,8 +48,8 @@ export function useTheme() {
     {
       type: "rock",
       color: "#6f1d1b",
-      nameColor: "",
-      nationalNumberColor: "",
+      nameColor: "#DAE2EA",
+      nationalNumberColor: "#B8B9BB",
     },
     {
       type: "bug",
