@@ -3,23 +3,40 @@ import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
 import { styles } from "./style";
 import { useAboutPokemon } from "./useAbout_Pokemon";
 import { ArrowLeft } from "phosphor-react-native";
+import { Props } from "../../types/Routes";
 
-export function AboutPokemon() {
+export function AboutPokemon({ navigation, route }: Props) {
   const hook = useAboutPokemon();
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.initialDisplay}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <View style={{ width: "10%" }}>
               <ArrowLeft size={32} />
             </View>
           </TouchableOpacity>
           <View style={{ width: "90%" }}>
-            <Text style={styles.pokemonName}>Bulbasaur</Text>
+            <Text style={styles.pokemonName}>
+              {route.params.pokemonName[0].toUpperCase() +
+                route.params.pokemonName.substring(1)}
+            </Text>
           </View>
         </View>
-        <Text style={styles.pokemonNationalNumber}>001</Text>
+
+        {route.params.pokemonNumber < 10 ? (
+          <Text style={styles.pokemonNationalNumber}>
+            00{route.params.pokemonNumber}
+          </Text>
+        ) : route.params.pokemonNumber < 100 ? (
+          <Text style={styles.pokemonNationalNumber}>
+            0{route.params.pokemonNumber}
+          </Text>
+        ) : (
+          <Text style={styles.pokemonNationalNumber}>
+            {route.params.pokemonNumber}
+          </Text>
+        )}
       </View>
       <View style={styles.pokemonImageContainer}>
         <Image

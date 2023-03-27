@@ -12,8 +12,9 @@ import { MagnifyingGlass, SlidersHorizontal } from "phosphor-react-native";
 import { PokemonCard } from "../../components/PokemonCard";
 import { useHome } from "./useHome";
 import { LoadingComponent } from "../../components/Loading";
+import { Props } from "../../types/Routes";
 
-export function Home() {
+export function Home({ navigation }: Props) {
   const hook = useHome();
   return (
     <View style={styles.container}>
@@ -61,6 +62,11 @@ export function Home() {
           <PokemonCard
             pokemonName={hook.selectedPokemon.name}
             pokemonIndexImg={hook.selectedPokemon.id}
+            action={() =>
+              navigation.navigate("about", {
+                pokemonName: hook.selectedPokemon?.name,
+              })
+            }
           />
         </View>
       ) : (
@@ -73,6 +79,12 @@ export function Home() {
                 pokemonName={item.name}
                 pokemonIndexImg={item.id}
                 key={item.id}
+                action={() =>
+                  navigation.navigate("about", {
+                    pokemonName: item.name,
+                    pokemonNumber: item.id
+                  })
+                }
               />
             )}
             numColumns={2}

@@ -6,10 +6,15 @@ import { styles } from "./style";
 interface IPokemonCard {
   pokemonName: string;
   pokemonIndexImg: number;
+  action: () => void;
 }
-export function PokemonCard({ pokemonName, pokemonIndexImg }: IPokemonCard) {
+export function PokemonCard({
+  pokemonName,
+  pokemonIndexImg,
+  action,
+}: IPokemonCard) {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => action()}>
       <View style={styles.container}>
         <View style={styles.imageContainer}>
           <Image
