@@ -108,8 +108,8 @@ export function useTheme() {
     {
       type: "dragon",
       color: "#08415c",
-      nameColor: "#343A40",
-      nationalNumberColor: "#6C757D",
+      nameColor: "#DAE2EA",
+      nationalNumberColor: "#B8B9BB",
     },
     {
       type: "dark",
