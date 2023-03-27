@@ -89,11 +89,11 @@ export function Home({ navigation }: Props) {
               />
             )}
             numColumns={2}
-            ItemSeparatorComponent={() => <View style={{ padding: 10 }} />}
+            ItemSeparatorComponent={() => <View style={{ paddingVertical: 10 }} />}
             columnWrapperStyle={{ gap: 20 }}
             showsVerticalScrollIndicator={false}
             onEndReached={hook.getPokemons}
-            contentContainerStyle={{ alignItems: "center", gap: 30 }}
+            contentContainerStyle={{ alignItems: "center", gap: 20 }}
             onEndReachedThreshold={0.1}
             ListFooterComponent={<LoadingComponent loading={hook.loading} />}
           />
