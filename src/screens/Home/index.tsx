@@ -65,6 +65,7 @@ export function Home({ navigation }: Props) {
             action={() =>
               navigation.navigate("about", {
                 pokemonName: hook.selectedPokemon?.name,
+                pokemonNumber: hook.selectedPokemon?.id,
               })
             }
           />
@@ -82,7 +83,7 @@ export function Home({ navigation }: Props) {
                 action={() =>
                   navigation.navigate("about", {
                     pokemonName: item.name,
-                    pokemonNumber: item.id
+                    pokemonNumber: item.id,
                   })
                 }
               />

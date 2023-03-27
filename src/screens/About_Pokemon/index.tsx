@@ -41,7 +41,7 @@ export function AboutPokemon({ navigation, route }: Props) {
       <View style={styles.pokemonImageContainer}>
         <Image
           source={{
-            uri: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+            uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${route.params.pokemonNumber}.png`,
           }}
           style={styles.pokemonImage}
         />
@@ -69,6 +69,7 @@ export function AboutPokemon({ navigation, route }: Props) {
               </View>
             </TouchableOpacity>
           )}
+          showsHorizontalScrollIndicator={false}
         />
       </View>
     </View>
