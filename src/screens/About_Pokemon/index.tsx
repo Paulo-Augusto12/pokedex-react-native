@@ -44,7 +44,7 @@ export function AboutPokemon() {
                   style={{
                     color: hook.selectedTag === item.id ? "#000000" : "#6C757D",
                     fontSize: 16,
-                    fontWeight: "600",
+                    fontWeight: hook.selectedTag === item.id ? "bold" : "600",
                   }}
                 >
                   {item.tagName}
