@@ -5,8 +5,7 @@ const theme = useTheme();
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.BACKGROUND,
-    paddingHorizontal: 18,
+    padding: 0,
   },
 
   header: {
@@ -28,27 +27,25 @@ export const styles = StyleSheet.create({
   },
   pokemonNationalNumber: {
     fontSize: theme.fontSize.nationalNumber,
-    color: theme.colors.LIGHT_GRAY,
     fontWeight: "bold",
     textAlign: "center",
   },
 
   pokemonImageContainer: {
-    width: 324,
-    height: 357,
-    marginTop: 60,
-    backgroundColor: "#CFD4BA",
-    alignSelf: "center",
-    borderRadius: 10,
-    padding: 6,
+    width: "100%",
+    padding: 36,
+    justifyContent: "center",
+    borderBottomLeftRadius: 186,
+    alignItems: "center",
   },
   pokemonImage: {
-    width: 312,
-    height: 345,
+    width: 240,
+    height: 252,
+    overflow: "hidden",
   },
 
   actionMenu: {
-    paddingTop: 41,
+    marginTop: 51,
     alignSelf: "center",
   },
 });
