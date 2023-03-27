@@ -2,6 +2,7 @@ import React from "react";
 
 export function useTheme() {
   const colors = {
+    BACKGROUND: "E9ECEF",
     TITLE: "#343A40",
     SUBTITLE: "#343A40",
     LIGHT_GRAY: "#CED4DA",
