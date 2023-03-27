@@ -14,28 +14,88 @@ export function useTheme() {
     default: 13,
     nationalNumber: 26,
   };
-  const colorTypes = {
-    normal: "#D3D3D3",
-    fighting: "#ffb703",
-    flying: "#8ecae6",
-    poison: "#0f4c5c",
-    ground: "#9d0208",
-    rock: "#6f1d1b",
-    bug: "#e0c045",
-    ghost: "#191528",
-    steel: "#a4c3b2",
-    fire: "#c1121f",
-    water: "#219ebc",
-    grass: "#55a630",
-    electric: "#ffff3f",
-    psychic: "#bde0fe",
-    ice: "#7bdff2",
-    dragon: "#08415c",
-    dark: "#1b1f22",
-    fairy: "#ffafcc",
-    unknown: "#1b2021",
-    shadow: "#291720",
-  };
+  const colorTypes = [
+    {
+      type: "normal",
+      color: "#D3D3D3",
+    },
+    {
+      type: "fighting",
+      color: "#ffb703",
+    },
+    {
+      type: "flying",
+      color: "#8ecae6",
+    },
+    {
+      type: "poison",
+      color: "#0f4c5c",
+    },
+    {
+      type: "ground",
+      color: "#9d0208",
+    },
+    {
+      type: "rock",
+      color: "#6f1d1b",
+    },
+    {
+      type: "bug",
+      color: "#e0c045",
+    },
+    {
+      type: "ghost",
+      color: "#191528",
+    },
+    {
+      type: "steel",
+      color: "#a4c3b2",
+    },
+    {
+      type: "fire",
+      color: "#c1121f",
+    },
+    {
+      type: "water",
+      color: "#219ebc",
+    },
+    {
+      type: "grass",
+      color: "#55a630",
+    },
+    {
+      type: "electric",
+      color: "#ffff3f",
+    },
+    {
+      type: "psychic",
+      color: "#bde0fe",
+    },
+    {
+      type: "ice",
+      color: "#7bdff2",
+    },
+    {
+      type: "dragon",
+      color: "#08415c",
+    },
+    {
+      type: "dark",
+      color: "#1b1f22",
+    },
+    {
+      type: "fairy",
+      color: "#ffafcc",
+    },
+    {
+      type: "unknown",
+      color: "#1b2021",
+    },
+    {
+      type: "shadow",
+      color: "#291720",
+    },
+  ];
 
   return {
     colors,
