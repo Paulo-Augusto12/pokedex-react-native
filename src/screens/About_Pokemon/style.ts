@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   },
 
   header: {
-    paddingTop: 70,
+    paddingTop: 40,
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
