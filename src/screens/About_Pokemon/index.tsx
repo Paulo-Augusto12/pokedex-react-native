@@ -65,11 +65,21 @@ export function AboutPokemon({ navigation, route }: Props) {
                     00{route.params.pokemonNumber}
                   </Text>
                 ) : route.params.pokemonNumber < 100 ? (
-                  <Text style={styles.pokemonNationalNumber}>
+                  <Text
+                    style={[
+                      styles.pokemonNationalNumber,
+                      { color: hook.backgroundTypeColor.nationalNumberColor },
+                    ]}
+                  >
                     0{route.params.pokemonNumber}
                   </Text>
                 ) : (
-                  <Text style={styles.pokemonNationalNumber}>
+                  <Text
+                    style={[
+                      styles.pokemonNationalNumber,
+                      { color: hook.backgroundTypeColor.nationalNumberColor },
+                    ]}
+                  >
                     {route.params.pokemonNumber}
                   </Text>
                 )}
