@@ -12,7 +12,7 @@ export function useTheme() {
   const fontSize = {
     large: 32,
     default: 13,
-    nationalNumber: 26
+    nationalNumber: 26,
   };
 
   return {
