@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 export function useAboutPokemon() {
+  const [selectedTag, setSelectedTag] = useState(1);
   const menuActionTags = [
     {
       tagName: "Abilities",
@@ -26,5 +27,7 @@ export function useAboutPokemon() {
 
   return {
     menuActionTags,
+    selectedTag,
+    setSelectedTag,
   };
 }
