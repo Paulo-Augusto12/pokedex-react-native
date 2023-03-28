@@ -55,7 +55,7 @@ export const styles = StyleSheet.create({
   },
 
   actionMenu: {
-    marginTop: 51,
+    marginTop: 46,
     alignSelf: "center",
   },
 });
