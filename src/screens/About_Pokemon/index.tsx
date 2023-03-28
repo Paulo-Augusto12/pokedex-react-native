@@ -140,7 +140,6 @@ export function AboutPokemon({ navigation, route }: Props) {
             </View>
           </View>
         )}
-        {/* <Text>a</Text> */}
         <View style={styles.pokemonAbilitiesContainer}>
           <FlatList
             data={["", ""]}
