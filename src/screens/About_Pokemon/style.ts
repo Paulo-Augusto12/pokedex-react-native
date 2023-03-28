@@ -35,13 +35,23 @@ export const styles = StyleSheet.create({
     width: "100%",
     padding: 36,
     justifyContent: "center",
-    borderBottomLeftRadius: 186,
+    borderBottomLeftRadius: 150,
     alignItems: "center",
   },
   pokemonImage: {
     width: 240,
     height: 252,
     overflow: "hidden",
+  },
+
+  flavorText: {
+    paddingHorizontal: 18,
+    marginTop: 40,
+  },
+
+  description: {
+    fontWeight: '600',
+    color: theme.colors.SUBTITLE
   },
 
   actionMenu: {
