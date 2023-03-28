@@ -24,6 +24,6 @@ export const styles = StyleSheet.create({
   },
   abilityDescription: {
     fontSize: 20,
-    fontWeight: '600'
+    fontWeight: "600",
   },
 });
