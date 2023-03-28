@@ -89,7 +89,9 @@ export function Home({ navigation }: Props) {
               />
             )}
             numColumns={2}
-            ItemSeparatorComponent={() => <View style={{ paddingVertical: 10 }} />}
+            ItemSeparatorComponent={() => (
+              <View style={{ paddingVertical: 10 }} />
+            )}
             columnWrapperStyle={{ gap: 20 }}
             showsVerticalScrollIndicator={false}
             onEndReached={hook.getPokemons}
