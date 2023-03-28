@@ -96,9 +96,7 @@ export function AboutPokemon({ navigation, route }: Props) {
           <View style={styles.flavorText}>
             {hook.pokemonSpeciesData && (
               <View>
-                <Text style={styles.description}>
-                  {hook.flavorText}
-                </Text>
+                <Text style={styles.description}>{hook.flavorText}</Text>
               </View>
             )}
           </View>
