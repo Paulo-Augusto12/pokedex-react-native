@@ -149,30 +149,30 @@ export function AboutPokemon({ navigation, route }: Props) {
             </View>
           </View>
         )}
-        <View style={styles.pokemonAbilitiesContainer}>
-          <FlatList
-            data={hook.pokemonData?.abilities}
-            renderItem={({ item }) => (
-              <AbilitiesCard
-                abilityDescription={hook.abilitiesDescriptions}
-                abilityName={
-                  item.ability.name[0].toUpperCase() +
-                  item.ability.name.substring(1)
-                }
-                containerBackgroundColor={
-                  hook.backgroundTypeColor.color as string
-                }
-                descriptionTextColor={
-                  hook.backgroundTypeColor.nameColor as string
-                }
-              />
-            )}
-            ItemSeparatorComponent={() => (
-              <View style={{ padding: 10, paddingBottom: 10 }} />
-            )}
-            showsVerticalScrollIndicator={false}
-          />
-        </View>
+        {hook.pokemonData?.abilities.length ? (
+          <View style={styles.pokemonAbilitiesContainer}>
+            <FlatList
+              data={hook.pokemonData?.abilities}
+              renderItem={() => (
+                <AbilitiesCard
+                  pokemonAbilities={hook.abilitiesDescriptions}
+                  containerBackgroundColor={
+                    hook.backgroundTypeColor.color as string
+                  }
+                  descriptionTextColor={
+                    hook.backgroundTypeColor.nameColor as string
+                  }
+                />
+              )}
+              ItemSeparatorComponent={() => (
+                <View style={{ padding: 10, paddingBottom: 10 }} />
+              )}
+              showsVerticalScrollIndicator={false}
+            />
+          </View>
+        ) : (
+          <></>
+        )}
       </View>
     </>
   );

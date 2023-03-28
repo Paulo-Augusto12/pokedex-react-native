@@ -13,7 +13,9 @@ export function useAboutPokemon() {
   const [pokemonData, setPokemonData] = useState<IPokemonDTO>();
   const [pokemonSpeciesData, setPokemonSpeciesData] =
     useState<IPokemonSpeciesDTO>();
-  const [abilitiesDescriptions, setAbilitiesDescriptions] = useState([""]);
+  const [abilitiesDescriptions, setAbilitiesDescriptions] = useState<
+    IPokemonAbilityDTO[]
+  >([]);
   const [flavorText, setFlavorText] = useState("");
   const [backgroundTypeColor, setBackgroundTypeColor] = useState({
     type: "",
@@ -83,9 +85,9 @@ export function useAboutPokemon() {
     const descriptions = response.data.effect_entries.filter(
       (entry: EffectEntry) => entry.language.name === "en"
     );
-    const a = descriptions.map((s: any) => s.effect);
-    setAbilitiesDescriptions([...abilitiesDescriptions, a]);
-    console.log(abilitiesDescriptions);
+    setAbilitiesDescriptions(response.data);
+    console.log(baseUrl);
+    console.log(response.data);
     return response.data;
   }
 
