@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { IPokemonDTO } from "../../api/DTO/IPokemonDTO";
 import { useTheme } from "../../hook/useTheme";
+import { IPokemonSpeciesDTO } from "../../api/DTO/IPokemonSpeciesDTO";
 export function useAboutPokemon() {
   const [selectedTag, setSelectedTag] = useState(1);
   const [pokemonData, setPokemonData] = useState<IPokemonDTO>();
+  const [pokemonSpeciesData, setPokemonSpeciesData] =
+    useState<IPokemonSpeciesDTO>();
+  const [flavorText, setFlavorText] = useState("");
   const [backgroundTypeColor, setBackgroundTypeColor] = useState({
     type: "",
     color: "",
@@ -57,9 +61,44 @@ export function useAboutPokemon() {
     setPokemonData(response.data);
   }
 
+  async function getPokemonSpeciesData() {
+    if (pokemonData) {
+      const baseUrl = `https://pokeapi.co/api/v2/pokemon-species/${pokemonData.id}/`;
+      const response = await axios.get(baseUrl);
+      if (response) {
+        setPokemonSpeciesData(response.data);
+      }
+    }
+  }
+
+  function getFlavorText() {
+    const language = pokemonSpeciesData?.flavor_text_entries.filter(
+      (language) => language.language.name === "en"
+    );
+
+    if (language) {
+      const text = language
+        .map((a) =>
+          a.flavor_text
+            .replaceAll("\n", " ")
+            .replaceAll("\f", " ")
+            .toLowerCase()
+        )
+        .shift();
+      setFlavorText(text as string);
+    }
+  }
+
   useEffect(() => {
     getBackgroundImageColor();
+    getPokemonSpeciesData();
   }, [pokemonData]);
+
+  useEffect(() => {
+    if (pokemonSpeciesData !== undefined) {
+      getFlavorText();
+    }
+  }, [pokemonSpeciesData]);
 
   return {
     menuActionTags,
@@ -70,5 +109,7 @@ export function useAboutPokemon() {
     setPokemonData,
     backgroundTypeColor,
     setBackgroundTypeColor,
+    pokemonSpeciesData,
+    flavorText,
   };
 }
