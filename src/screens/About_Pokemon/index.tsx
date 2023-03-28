@@ -132,25 +132,27 @@ export function AboutPokemon({ navigation, route }: Props) {
         </View>
       )}
       {/* <Text>a</Text> */}
-      {hook.backgroundTypeColor.color.trim() && (
-        <View style={styles.pokemonAbilitiesContainer}>
-          <FlatList
-            data={["", ""]}
-            renderItem={({ item }) => (
-              <AbilitiesCard
-                abilityDescription="A strange seed was planted on its back at birth. The plant sprouts and grows with this POKéMON."
-                abilityName="Clorophyle"
-                containerBackgroundColor={hook.backgroundTypeColor.color}
-                descriptionTextColor={hook.backgroundTypeColor.nameColor}
-              />
-            )}
-            ItemSeparatorComponent={() => (
-              <View style={{ padding: 10, paddingBottom: 10 }} />
-            )}
-            showsVerticalScrollIndicator={false}
-          />
-        </View>
-      )}
+      <View style={styles.pokemonAbilitiesContainer}>
+        <FlatList
+          data={["", ""]}
+          renderItem={({ item }) => (
+            <AbilitiesCard
+              abilityDescription="A strange seed was planted on its back at birth. The plant sprouts and grows with this POKéMON."
+              abilityName="Clorophyle"
+              containerBackgroundColor={
+                hook.backgroundTypeColor.color as string
+              }
+              descriptionTextColor={
+                hook.backgroundTypeColor.nameColor as string
+              }
+            />
+          )}
+          ItemSeparatorComponent={() => (
+            <View style={{ padding: 10, paddingBottom: 10 }} />
+          )}
+          showsVerticalScrollIndicator={false}
+        />
+      </View>
     </View>
   );
 }
