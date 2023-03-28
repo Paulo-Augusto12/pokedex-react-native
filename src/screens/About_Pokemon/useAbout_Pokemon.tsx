@@ -3,11 +3,17 @@ import axios from "axios";
 import { IPokemonDTO } from "../../api/DTO/IPokemonDTO";
 import { useTheme } from "../../hook/useTheme";
 import { IPokemonSpeciesDTO } from "../../api/DTO/IPokemonSpeciesDTO";
+import {
+  EffectEntry,
+  IPokemonAbilityDTO,
+} from "../../api/DTO/IPokemonAbilityDTO";
+
 export function useAboutPokemon() {
   const [selectedTag, setSelectedTag] = useState(1);
   const [pokemonData, setPokemonData] = useState<IPokemonDTO>();
   const [pokemonSpeciesData, setPokemonSpeciesData] =
     useState<IPokemonSpeciesDTO>();
+  const [abilitiesDescriptions, setAbilitiesDescriptions] = useState([""]);
   const [flavorText, setFlavorText] = useState("");
   const [backgroundTypeColor, setBackgroundTypeColor] = useState({
     type: "",
@@ -71,6 +77,18 @@ export function useAboutPokemon() {
     }
   }
 
+  async function getPokemonAbilitiesData(abilityName: string) {
+    const baseUrl = `https://pokeapi.co/api/v2/ability/${abilityName}/`;
+    const response = await axios.get(baseUrl);
+    const descriptions = response.data.effect_entries.filter(
+      (entry: EffectEntry) => entry.language.name === "en"
+    );
+    const a = descriptions.map((s: any) => s.effect);
+    setAbilitiesDescriptions([...abilitiesDescriptions, a]);
+    console.log(abilitiesDescriptions);
+    return response.data;
+  }
+
   function getFlavorText() {
     const language = pokemonSpeciesData?.flavor_text_entries.filter(
       (language) => language.language.name === "en"
@@ -92,13 +110,21 @@ export function useAboutPokemon() {
   useEffect(() => {
     getBackgroundImageColor();
     getPokemonSpeciesData();
-  }, [pokemonData]);
+  }, [pokemonData?.name]);
 
   useEffect(() => {
     if (pokemonSpeciesData !== undefined) {
       getFlavorText();
     }
-  }, [pokemonSpeciesData]);
+  }, [pokemonSpeciesData?.flavor_text_entries]);
+
+  useEffect(() => {
+    if (pokemonData) {
+      pokemonData.abilities.forEach((name) => {
+        getPokemonAbilitiesData(name.ability.name);
+      });
+    }
+  }, [pokemonData?.abilities.length]);
 
   return {
     menuActionTags,
@@ -111,5 +137,7 @@ export function useAboutPokemon() {
     setBackgroundTypeColor,
     pokemonSpeciesData,
     flavorText,
+    abilitiesDescriptions,
+    setAbilitiesDescriptions,
   };
 }

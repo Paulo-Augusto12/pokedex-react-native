@@ -4,7 +4,7 @@ import { styles } from "./style";
 
 interface IAbilitiesCardProps {
   abilityName: string;
-  abilityDescription: string;
+  abilityDescription: string[];
   containerBackgroundColor: ColorValue | undefined;
   descriptionTextColor: ColorValue | undefined;
 }
@@ -16,21 +16,29 @@ export function AbilitiesCard({
 }: IAbilitiesCardProps) {
   return (
     <View style={styles.container}>
-      <View style={styles.AbilityNameWrapper}>
-        <Text style={styles.AbilityName}>{abilityName}</Text>
-      </View>
-      <View
-        style={[
-          styles.abilityContainer,
-          { backgroundColor: containerBackgroundColor },
-        ]}
-      >
-        <Text
-          style={[styles.abilityDescription, { color: descriptionTextColor }]}
-        >
-          {abilityDescription.toLowerCase()}
-        </Text>
-      </View>
+      {abilityDescription.map((ability) => (
+        <>
+          <View style={styles.AbilityNameWrapper}>
+            <Text style={styles.AbilityName}>{abilityName}</Text>
+          </View>
+
+          <View
+            style={[
+              styles.abilityContainer,
+              { backgroundColor: containerBackgroundColor },
+            ]}
+          >
+            <Text
+              style={[
+                styles.abilityDescription,
+                { color: descriptionTextColor },
+              ]}
+            >
+              {abilityDescription.map((a) => a)}
+            </Text>
+          </View>
+        </>
+      ))}
     </View>
   );
 }

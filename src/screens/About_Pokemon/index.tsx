@@ -64,7 +64,10 @@ export function AboutPokemon({ navigation, route }: Props) {
                     <Text
                       style={[
                         styles.pokemonNationalNumber,
-                        { color: hook.backgroundTypeColor.nationalNumberColor },
+                        {
+                          color: hook.backgroundTypeColor
+                            .nationalNumberColor as string,
+                        },
                       ]}
                     >
                       00{route.params.pokemonNumber}
@@ -73,7 +76,10 @@ export function AboutPokemon({ navigation, route }: Props) {
                     <Text
                       style={[
                         styles.pokemonNationalNumber,
-                        { color: hook.backgroundTypeColor.nationalNumberColor },
+                        {
+                          color: hook.backgroundTypeColor
+                            .nationalNumberColor as string,
+                        },
                       ]}
                     >
                       0{route.params.pokemonNumber}
@@ -82,7 +88,10 @@ export function AboutPokemon({ navigation, route }: Props) {
                     <Text
                       style={[
                         styles.pokemonNationalNumber,
-                        { color: hook.backgroundTypeColor.nationalNumberColor },
+                        {
+                          color: hook.backgroundTypeColor
+                            .nationalNumberColor as string,
+                        },
                       ]}
                     >
                       {route.params.pokemonNumber}
@@ -142,11 +151,14 @@ export function AboutPokemon({ navigation, route }: Props) {
         )}
         <View style={styles.pokemonAbilitiesContainer}>
           <FlatList
-            data={["", ""]}
+            data={hook.pokemonData?.abilities}
             renderItem={({ item }) => (
               <AbilitiesCard
-                abilityDescription="A strange seed was planted on its back at birth. The plant sprouts and grows with this POKéMON."
-                abilityName="Clorophyle"
+                abilityDescription={hook.abilitiesDescriptions}
+                abilityName={
+                  item.ability.name[0].toUpperCase() +
+                  item.ability.name.substring(1)
+                }
                 containerBackgroundColor={
                   hook.backgroundTypeColor.color as string
                 }
