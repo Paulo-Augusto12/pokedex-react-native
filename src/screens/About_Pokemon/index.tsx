@@ -6,6 +6,7 @@ import { ArrowLeft } from "phosphor-react-native";
 import { Props } from "../../types/Routes";
 import { useTheme } from "../../hook/useTheme";
 import { LoadingComponent } from "../../components/Loading";
+import { AbilitiesCard } from "../../components/AbilityCard";
 
 export function AboutPokemon({ navigation, route }: Props) {
   const hook = useAboutPokemon();
@@ -20,7 +21,7 @@ export function AboutPokemon({ navigation, route }: Props) {
           <LoadingComponent loading={!route.params.pokemonName.trim()} />
         </View>
       ) : (
-        <>
+        <View>
           {!hook.backgroundTypeColor.color.trim() ? (
             <View>
               <LoadingComponent loading={!route.params.pokemonName.trim()} />
@@ -128,7 +129,27 @@ export function AboutPokemon({ navigation, route }: Props) {
               showsHorizontalScrollIndicator={false}
             />
           </View>
-        </>
+        </View>
+      )}
+      {/* <Text>a</Text> */}
+      {hook.backgroundTypeColor.color.trim() && (
+        <View style={styles.pokemonAbilitiesContainer}>
+          <FlatList
+            data={["", ""]}
+            renderItem={({ item }) => (
+              <AbilitiesCard
+                abilityDescription="A strange seed was planted on its back at birth. The plant sprouts and grows with this POKéMON."
+                abilityName="Clorophyle"
+                containerBackgroundColor={hook.backgroundTypeColor.color}
+                descriptionTextColor={hook.backgroundTypeColor.nameColor}
+              />
+            )}
+            ItemSeparatorComponent={() => (
+              <View style={{ padding: 10, paddingBottom: 10 }} />
+            )}
+            showsVerticalScrollIndicator={false}
+          />
+        </View>
       )}
     </View>
   );

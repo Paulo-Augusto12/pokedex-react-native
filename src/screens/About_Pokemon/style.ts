@@ -50,12 +50,22 @@ export const styles = StyleSheet.create({
   },
 
   description: {
-    fontWeight: '600',
-    color: theme.colors.SUBTITLE
+    fontWeight: "600",
+    color: theme.colors.SUBTITLE,
   },
 
   actionMenu: {
     marginTop: 46,
     alignSelf: "center",
+    height: 50,
+  },
+
+  pokemonAbilitiesContainer: {
+    width: "100%",
+    flexDirection: "column",
+    flex: 1,
+    paddingHorizontal: 18,
+    gap: 48,
+    paddingBottom: 10,
   },
 });
