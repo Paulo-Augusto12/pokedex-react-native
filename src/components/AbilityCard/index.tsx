@@ -15,6 +15,7 @@ export function AbilitiesCard({
   descriptionTextColor,
 }: IAbilitiesCardProps) {
   return (
+    // Testa fazer a flatilist aqui ao invés da página em si, veja como seria uma lista de IPokemonAbilitiesDTO e passe esse array via props
     <View style={styles.container}>
       {abilityDescription.map((ability) => (
         <>
