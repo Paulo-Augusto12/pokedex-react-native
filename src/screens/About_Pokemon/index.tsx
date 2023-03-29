@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
 import { styles } from "./style";
 import { useAboutPokemon } from "./useAbout_Pokemon";
-import { ArrowLeft } from "phosphor-react-native";
+import { ArrowLeft, CaretLeft, CaretRight } from "phosphor-react-native";
 import { Props } from "../../types/Routes";
 import { useTheme } from "../../hook/useTheme";
 import { LoadingComponent } from "../../components/Loading";
@@ -34,7 +34,10 @@ export function AboutPokemon({ navigation, route }: Props) {
               <View
                 style={[
                   styles.pokemonImageContainer,
-                  { backgroundColor: hook.backgroundTypeColor.color, height: 460 },
+                  {
+                    backgroundColor: hook.backgroundTypeColor.color,
+                    height: 460,
+                  },
                 ]}
               >
                 <View style={styles.header}>
@@ -59,44 +62,63 @@ export function AboutPokemon({ navigation, route }: Props) {
                       </Text>
                     </View>
                   </View>
-
-                  {route.params.pokemonNumber < 10 ? (
-                    <Text
-                      style={[
-                        styles.pokemonNationalNumber,
-                        {
-                          color: hook.backgroundTypeColor
-                            .nationalNumberColor as string,
-                        },
-                      ]}
+                  <View style={styles.numberActions}>
+                    <TouchableOpacity
                     >
-                      00{route.params.pokemonNumber}
-                    </Text>
-                  ) : route.params.pokemonNumber < 100 ? (
-                    <Text
-                      style={[
-                        styles.pokemonNationalNumber,
-                        {
-                          color: hook.backgroundTypeColor
-                            .nationalNumberColor as string,
-                        },
-                      ]}
+                      <CaretLeft
+                        size={35}
+                        color={
+                          hook.backgroundTypeColor.nationalNumberColor as string
+                        }
+                      />
+                    </TouchableOpacity>
+                    {route.params.pokemonNumber < 10 ? (
+                      <Text
+                        style={[
+                          styles.pokemonNationalNumber,
+                          {
+                            color: hook.backgroundTypeColor
+                              .nationalNumberColor as string,
+                          },
+                        ]}
+                      >
+                        00{route.params.pokemonNumber}
+                      </Text>
+                    ) : route.params.pokemonNumber < 100 ? (
+                      <Text
+                        style={[
+                          styles.pokemonNationalNumber,
+                          {
+                            color: hook.backgroundTypeColor
+                              .nationalNumberColor as string,
+                          },
+                        ]}
+                      >
+                        0{route.params.pokemonNumber}
+                      </Text>
+                    ) : (
+                      <Text
+                        style={[
+                          styles.pokemonNationalNumber,
+                          {
+                            color: hook.backgroundTypeColor
+                              .nationalNumberColor as string,
+                          },
+                        ]}
+                      >
+                        {route.params.pokemonNumber}
+                      </Text>
+                    )}
+                    <TouchableOpacity
                     >
-                      0{route.params.pokemonNumber}
-                    </Text>
-                  ) : (
-                    <Text
-                      style={[
-                        styles.pokemonNationalNumber,
-                        {
-                          color: hook.backgroundTypeColor
-                            .nationalNumberColor as string,
-                        },
-                      ]}
-                    >
-                      {route.params.pokemonNumber}
-                    </Text>
-                  )}
+                      <CaretRight
+                        size={35}
+                        color={
+                          hook.backgroundTypeColor.nationalNumberColor as string
+                        }
+                      />
+                    </TouchableOpacity>
+                  </View>
                 </View>
 
                 <Image

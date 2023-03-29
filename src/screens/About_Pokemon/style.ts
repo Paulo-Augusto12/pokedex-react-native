@@ -30,6 +30,12 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
   },
+  numberActions:{
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 16
+  },
 
   pokemonImageContainer: {
     width: "100%",
@@ -42,6 +48,7 @@ export const styles = StyleSheet.create({
     width: 240,
     height: 252,
     overflow: "hidden",
+    marginTop: 15
   },
 
   flavorText: {
