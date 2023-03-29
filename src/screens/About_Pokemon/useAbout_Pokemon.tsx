@@ -157,8 +157,6 @@ export function useAboutPokemon() {
     }
   }, [pokemonSpeciesData?.flavor_text_entries]);
 
-  useEffect(() => console.log(pokemonData), [pokemonData]);
-
   return {
     menuActionTags,
     selectedTag,
