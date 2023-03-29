@@ -149,7 +149,7 @@ export function useAboutPokemon() {
   useEffect(() => {
     getBackgroundImageColor();
     getPokemonSpeciesData();
-  }, [pokemonData?.name]);
+  }, [pokemonData?.id]);
 
   useEffect(() => {
     if (pokemonSpeciesData !== undefined) {

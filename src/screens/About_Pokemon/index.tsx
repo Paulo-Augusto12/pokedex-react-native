@@ -12,23 +12,25 @@ export function AboutPokemon({ navigation, route }: Props) {
   const hook = useAboutPokemon();
 
   useEffect(() => {
-    hook.handleGetPokemonData(route.params.pokemonName);
-  }, []);
+    hook.handleGetPokemonData(route.params.pokemonNumber);
+
+    console.log(route.params.pokemonNumber)
+  }, [route.params.pokemonNumber]);
   return (
     <>
       {!hook.backgroundTypeColor.color.trim() && (
         <LoadingComponent loading={!hook.backgroundTypeColor.color.trim()} />
       )}
       <View style={styles.container}>
-        {!route.params.pokemonName.trim() ? (
+        {!hook.pokemonData ? (
           <View>
-            <LoadingComponent loading={!route.params.pokemonName.trim()} />
+            <LoadingComponent loading={!hook.pokemonData} />
           </View>
         ) : (
           <View>
             {!hook.backgroundTypeColor.color.trim() ? (
               <View>
-                <LoadingComponent loading={!route.params.pokemonName.trim()} />
+                <LoadingComponent loading={!hook.pokemonData} />
               </View>
             ) : (
               <View
@@ -57,13 +59,18 @@ export function AboutPokemon({ navigation, route }: Props) {
                           { color: hook.backgroundTypeColor.nameColor },
                         ]}
                       >
-                        {route.params.pokemonName[0].toUpperCase() +
-                          route.params.pokemonName.substring(1)}
+                        {hook.pokemonData.name[0].toUpperCase() +
+                          hook.pokemonData.name.substring(1)}
                       </Text>
                     </View>
                   </View>
                   <View style={styles.numberActions}>
                     <TouchableOpacity
+                    onPress={() => {
+                      navigation.navigate("about", {
+                        pokemonNumber: hook.pokemonData.id  - 1,
+                      });
+                    }}
                     >
                       <CaretLeft
                         size={35}
@@ -110,6 +117,11 @@ export function AboutPokemon({ navigation, route }: Props) {
                       </Text>
                     )}
                     <TouchableOpacity
+                      onPress={() => {
+                        navigation.navigate("about", {
+                          pokemonNumber: hook.pokemonData.id + 1,
+                        });
+                      }}
                     >
                       <CaretRight
                         size={35}

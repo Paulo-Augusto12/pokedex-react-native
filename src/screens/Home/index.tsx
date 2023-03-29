@@ -82,7 +82,7 @@ export function Home({ navigation }: Props) {
                 key={item.id}
                 action={() =>
                   navigation.navigate("about", {
-                    pokemonName: item.name,
+                    // pokemonName: item.name,
                     pokemonNumber: item.id,
                   })
                 }

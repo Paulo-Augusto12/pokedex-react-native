@@ -42,8 +42,8 @@ export function useTheme() {
     {
       type: "ground",
       color: "#9d0208",
-      nameColor: "",
-      nationalNumberColor: "",
+      nameColor: "#DAE2EA",
+      nationalNumberColor: "#B8B9BB",
     },
     {
       type: "rock",
