@@ -34,7 +34,7 @@ export function AboutPokemon({ navigation, route }: Props) {
               <View
                 style={[
                   styles.pokemonImageContainer,
-                  { backgroundColor: hook.backgroundTypeColor.color },
+                  { backgroundColor: hook.backgroundTypeColor.color, height: 460 },
                 ]}
               >
                 <View style={styles.header}>
