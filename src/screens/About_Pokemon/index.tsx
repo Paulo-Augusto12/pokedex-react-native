@@ -13,7 +13,7 @@ export function AboutPokemon({ navigation, route }: Props) {
 
   useEffect(() => {
     hook.handleGetPokemonData(route.params.pokemonName);
-  }, [hook.pokemonData]);
+  }, []);
   return (
     <>
       {!hook.backgroundTypeColor.color.trim() && (
@@ -149,29 +149,18 @@ export function AboutPokemon({ navigation, route }: Props) {
             </View>
           </View>
         )}
-        {hook.pokemonData?.abilities.length ? (
+        {hook.pokemonData?.abilities?.length > 0 && (
           <View style={styles.pokemonAbilitiesContainer}>
-            <FlatList
-              data={hook.pokemonData?.abilities}
-              renderItem={() => (
-                <AbilitiesCard
-                  pokemonAbilities={hook.abilitiesDescriptions}
-                  containerBackgroundColor={
-                    hook.backgroundTypeColor.color as string
-                  }
-                  descriptionTextColor={
-                    hook.backgroundTypeColor.nameColor as string
-                  }
-                />
-              )}
-              ItemSeparatorComponent={() => (
-                <View style={{ padding: 10, paddingBottom: 10 }} />
-              )}
-              showsVerticalScrollIndicator={false}
+            <AbilitiesCard
+              pokemonAbilities={hook.pokemonData.abilities}
+              containerBackgroundColor={
+                hook.backgroundTypeColor.color as string
+              }
+              descriptionTextColor={
+                hook.backgroundTypeColor.nameColor as string
+              }
             />
           </View>
-        ) : (
-          <></>
         )}
       </View>
     </>

@@ -21,6 +21,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 12,
+    marginTop: 15,
   },
   abilityDescription: {
     fontSize: 20,

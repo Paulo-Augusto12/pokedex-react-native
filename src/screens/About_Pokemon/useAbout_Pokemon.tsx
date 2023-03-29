@@ -1,21 +1,34 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { IPokemonDTO } from "../../api/DTO/IPokemonDTO";
+import axios, { AxiosResponse } from "axios";
+import { Ability, IPokemonDTO } from "../../api/DTO/IPokemonDTO";
 import { useTheme } from "../../hook/useTheme";
 import { IPokemonSpeciesDTO } from "../../api/DTO/IPokemonSpeciesDTO";
-import {
-  EffectEntry,
-  IPokemonAbilityDTO,
-} from "../../api/DTO/IPokemonAbilityDTO";
+import { IPokemonAbilityDTO } from "../../api/DTO/IPokemonAbilityDTO";
 
+export interface IPokemonAbilities {
+  name: string;
+  effect: string;
+}
+interface IPokemonType {
+  name: string;
+}
+interface IPokemonData {
+  name: string;
+  id: number;
+  abilities: IPokemonAbilities[];
+  types: IPokemonType;
+}
 export function useAboutPokemon() {
   const [selectedTag, setSelectedTag] = useState(1);
-  const [pokemonData, setPokemonData] = useState<IPokemonDTO>();
+  const [pokemonData, setPokemonData] = useState<IPokemonData>(
+    {} as IPokemonData
+  );
   const [pokemonSpeciesData, setPokemonSpeciesData] =
     useState<IPokemonSpeciesDTO>();
   const [abilitiesDescriptions, setAbilitiesDescriptions] = useState<
     IPokemonAbilityDTO[]
   >([]);
+  const [abilitiesResponse, setAbilitiesResponse] = useState<Ability[]>([]);
   const [flavorText, setFlavorText] = useState("");
   const [backgroundTypeColor, setBackgroundTypeColor] = useState({
     type: "",
@@ -50,9 +63,7 @@ export function useAboutPokemon() {
 
   function getBackgroundImageColor() {
     if (pokemonData) {
-      const pokemonType = pokemonData.types
-        .map((type) => type.type.name)
-        .shift();
+      const pokemonType = pokemonData?.types?.name;
       const color = theme.colorTypes
         .filter((a) => a.type === pokemonType)
         .shift();
@@ -62,11 +73,49 @@ export function useAboutPokemon() {
       }
     }
   }
+  function IPokemonAbilitiesDTOtoIPokemonAbilityData(
+    DTO: IPokemonAbilityDTO[]
+  ): IPokemonAbilities[] {
+    return DTO.map((ability) => {
+      return {
+        effect: ability.effect_entries.find(
+          (language) => language.language.name === "en"
+        )?.effect as string,
+        name: ability.name,
+      };
+    });
+  }
+
+  function IPokemonDTOtoIPokemonData(
+    DTO: IPokemonDTO,
+    Abilities: IPokemonAbilityDTO[]
+  ): IPokemonData {
+    return {
+      name: DTO.name,
+      id: DTO.id,
+      types: {
+        name: DTO.types[0].type.name,
+      },
+      abilities: IPokemonAbilitiesDTOtoIPokemonAbilityData(Abilities),
+    };
+  }
 
   async function handleGetPokemonData(name: string) {
     const baseUrl = `https://pokeapi.co/api/v2/pokemon/${name}`;
-    const response = await axios.get(baseUrl);
-    setPokemonData(response.data);
+    try {
+      const response: AxiosResponse<IPokemonDTO> = await axios.get(baseUrl);
+      let abilitiesResponse: IPokemonAbilityDTO[] = [];
+      abilitiesResponse = await axios.all(
+        response.data?.abilities.map(async (ability) => {
+          const response = await axios.get(ability.ability.url);
+          return response.data;
+        })
+      );
+      const a = IPokemonDTOtoIPokemonData(response.data, abilitiesResponse);
+      setPokemonData(a);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async function getPokemonSpeciesData() {
@@ -77,18 +126,6 @@ export function useAboutPokemon() {
         setPokemonSpeciesData(response.data);
       }
     }
-  }
-
-  async function getPokemonAbilitiesData(abilityName: string) {
-    const baseUrl = `https://pokeapi.co/api/v2/ability/${abilityName}/`;
-    const response = await axios.get(baseUrl);
-    const descriptions = response.data.effect_entries.filter(
-      (entry: EffectEntry) => entry.language.name === "en"
-    );
-    setAbilitiesDescriptions(response.data);
-    console.log(baseUrl);
-    console.log(response.data);
-    return response.data;
   }
 
   function getFlavorText() {
@@ -120,13 +157,7 @@ export function useAboutPokemon() {
     }
   }, [pokemonSpeciesData?.flavor_text_entries]);
 
-  useEffect(() => {
-    if (pokemonData) {
-      pokemonData.abilities.forEach((name) => {
-        getPokemonAbilitiesData(name.ability.name);
-      });
-    }
-  }, [pokemonData?.abilities.length]);
+  useEffect(() => console.log(pokemonData), [pokemonData]);
 
   return {
     menuActionTags,

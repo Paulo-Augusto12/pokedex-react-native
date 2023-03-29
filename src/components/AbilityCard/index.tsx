@@ -1,11 +1,12 @@
-import React from "react";
-import { View, Text, ColorValue } from "react-native";
+import React, { useEffect } from "react";
+import { View, Text, ColorValue, FlatList } from "react-native";
 import { styles } from "./style";
 import { IPokemonAbilityDTO } from "../../api/DTO/IPokemonAbilityDTO";
 import { LoadingComponent } from "../Loading";
+import { IPokemonAbilities } from "../../screens/About_Pokemon/useAbout_Pokemon";
 
 interface IAbilitiesCardProps {
-  pokemonAbilities: IPokemonAbilityDTO[];
+  pokemonAbilities: IPokemonAbilities[];
   containerBackgroundColor: ColorValue;
   descriptionTextColor: ColorValue;
 }
@@ -14,14 +15,18 @@ export function AbilitiesCard({
   containerBackgroundColor,
   descriptionTextColor,
 }: IAbilitiesCardProps) {
+  useEffect(() => {
+    console.log(pokemonAbilities, "abilitiesaaaaaaaaaaaaaaaaaa");
+  }, []);
   return (
     <View style={styles.container}>
       {pokemonAbilities.length ? (
-        <>
-          {pokemonAbilities.map((ability) => (
+        <FlatList
+          data={pokemonAbilities}
+          renderItem={({ item }) => (
             <>
               <View style={styles.AbilityNameWrapper}>
-                <Text style={styles.AbilityName}>{ability.name}</Text>
+                <Text style={styles.AbilityName}>{item.name}</Text>
               </View>
 
               <View
@@ -36,14 +41,16 @@ export function AbilitiesCard({
                     { color: descriptionTextColor },
                   ]}
                 >
-                  {ability.effect_entries.map(
-                    (description) => description.effect
-                  )}
+                  {item.effect}
                 </Text>
               </View>
             </>
-          ))}
-        </>
+          )}
+          ItemSeparatorComponent={() => (
+            <View style={{ padding: 10, paddingBottom: 10 }} />
+          )}
+          showsVerticalScrollIndicator={false}
+        />
       ) : (
         <LoadingComponent loading={!pokemonAbilities.length} />
       )}

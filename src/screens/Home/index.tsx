@@ -95,8 +95,8 @@ export function Home({ navigation }: Props) {
             columnWrapperStyle={{ gap: 20 }}
             showsVerticalScrollIndicator={false}
             onEndReached={hook.getPokemons}
-            contentContainerStyle={{ alignItems: "center", gap: 20 }}
-            onEndReachedThreshold={0.1}
+            contentContainerStyle={{ alignItems: "center" }}
+            onEndReachedThreshold={0.9}
             ListFooterComponent={<LoadingComponent loading={hook.loading} />}
           />
         </View>
