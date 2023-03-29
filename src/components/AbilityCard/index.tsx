@@ -15,9 +15,6 @@ export function AbilitiesCard({
   containerBackgroundColor,
   descriptionTextColor,
 }: IAbilitiesCardProps) {
-  useEffect(() => {
-    console.log(pokemonAbilities, "abilitiesaaaaaaaaaaaaaaaaaa");
-  }, []);
   return (
     <View style={styles.container}>
       {pokemonAbilities.length ? (
@@ -26,7 +23,9 @@ export function AbilitiesCard({
           renderItem={({ item }) => (
             <>
               <View style={styles.AbilityNameWrapper}>
-                <Text style={styles.AbilityName}>{item.name}</Text>
+                <Text style={styles.AbilityName}>
+                  {item.name[0].toUpperCase() + item.name.substring(1)}
+                </Text>
               </View>
 
               <View
