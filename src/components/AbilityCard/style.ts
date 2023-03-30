@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-    padding: 12,
+    padding: 6,
     marginTop: 15,
   },
   abilityDescription: {
