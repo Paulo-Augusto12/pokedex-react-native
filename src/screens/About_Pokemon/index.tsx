@@ -63,11 +63,11 @@ export function AboutPokemon({ navigation, route }: Props) {
                   </View>
                   <View style={styles.numberActions}>
                     <TouchableOpacity
-                    onPress={() => {
-                      navigation.navigate("about", {
-                        pokemonNumber: hook.pokemonData.id  - 1,
-                      });
-                    }}
+                      onPress={() => {
+                        navigation.navigate("about", {
+                          pokemonNumber: hook.pokemonData.id - 1,
+                        });
+                      }}
                     >
                       <CaretLeft
                         size={35}
