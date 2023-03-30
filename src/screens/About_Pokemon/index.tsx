@@ -6,6 +6,7 @@ import { ArrowLeft, CaretLeft, CaretRight } from "phosphor-react-native";
 import { Props } from "../../types/Routes";
 import { LoadingComponent } from "../../components/Loading";
 import { AbilitiesCard } from "../../components/AbilityCard";
+import { TypeCard } from "../../components/TypeCard";
 
 export function AboutPokemon({ navigation, route }: Props) {
   const hook = useAboutPokemon();
@@ -195,8 +196,16 @@ export function AboutPokemon({ navigation, route }: Props) {
         )}
 
         {hook.selectedTag === 2 && (
-          <View>
-            <Text>Hello</Text>
+          <View style={styles.pokemonTypesContainer}>
+            <TypeCard
+              pokemonTypes={hook.pokemonData.types}
+              containerBackgroundColor={
+                hook.backgroundTypeColor.color as string
+              }
+              descriptionTextColor={
+                hook.backgroundTypeColor.nameColor as string
+              }
+            />
           </View>
         )}
       </View>
