@@ -4,7 +4,6 @@ import { styles } from "./style";
 import { useAboutPokemon } from "./useAbout_Pokemon";
 import { ArrowLeft, CaretLeft, CaretRight } from "phosphor-react-native";
 import { Props } from "../../types/Routes";
-import { useTheme } from "../../hook/useTheme";
 import { LoadingComponent } from "../../components/Loading";
 import { AbilitiesCard } from "../../components/AbilityCard";
 
@@ -13,8 +12,6 @@ export function AboutPokemon({ navigation, route }: Props) {
 
   useEffect(() => {
     hook.handleGetPokemonData(route.params.pokemonNumber);
-
-    console.log(route.params.pokemonNumber)
   }, [route.params.pokemonNumber]);
   return (
     <>
