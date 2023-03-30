@@ -4,19 +4,22 @@ import { Ability, IPokemonDTO } from "../../api/DTO/IPokemonDTO";
 import { useTheme } from "../../hook/useTheme";
 import { IPokemonSpeciesDTO } from "../../api/DTO/IPokemonSpeciesDTO";
 import { IPokemonAbilityDTO } from "../../api/DTO/IPokemonAbilityDTO";
+import { Result } from "../../api/DTO/IInitialResultDTO";
 
 export interface IPokemonAbilities {
   name: string;
   effect: string;
 }
-interface IPokemonType {
+export interface IPokemonType {
   name: string;
+  url: string;
+  // pokemons: Result[];
 }
 interface IPokemonData {
   name: string;
   id: number;
   abilities: IPokemonAbilities[];
-  types: IPokemonType;
+  types: IPokemonType[];
 }
 export function useAboutPokemon() {
   const [selectedTag, setSelectedTag] = useState(1);
@@ -28,7 +31,6 @@ export function useAboutPokemon() {
   const [abilitiesDescriptions, setAbilitiesDescriptions] = useState<
     IPokemonAbilityDTO[]
   >([]);
-  const [abilitiesResponse, setAbilitiesResponse] = useState<Ability[]>([]);
   const [flavorText, setFlavorText] = useState("");
   const [backgroundTypeColor, setBackgroundTypeColor] = useState({
     type: "",
@@ -63,13 +65,15 @@ export function useAboutPokemon() {
 
   function getBackgroundImageColor() {
     if (pokemonData) {
-      const pokemonType = pokemonData?.types?.name;
-      const color = theme.colorTypes
-        .filter((a) => a.type === pokemonType)
-        .shift();
+      const pokemonType = pokemonData.types?.map((type) => type.name);
+      if (pokemonType) {
+        const color = theme.colorTypes
+          .filter((a) => a.type === pokemonType[0])
+          .shift();
 
-      if (color) {
-        setBackgroundTypeColor(color);
+        if (color) {
+          setBackgroundTypeColor(color);
+        }
       }
     }
   }
@@ -93,10 +97,8 @@ export function useAboutPokemon() {
     return {
       name: DTO.name,
       id: DTO.id,
-      types: {
-        name: DTO.types[0].type.name,
-      },
       abilities: IPokemonAbilitiesDTOtoIPokemonAbilityData(Abilities),
+      types: DTO.types.map((type) => type.type),
     };
   }
 
