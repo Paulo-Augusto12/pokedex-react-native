@@ -180,7 +180,7 @@ export function AboutPokemon({ navigation, route }: Props) {
             </View>
           </View>
         )}
-        {hook.pokemonData?.abilities?.length > 0 && (
+        {hook.pokemonData?.abilities?.length > 0 && hook.selectedTag === 1 && (
           <View style={styles.pokemonAbilitiesContainer}>
             <AbilitiesCard
               pokemonAbilities={hook.pokemonData.abilities}
@@ -191,6 +191,12 @@ export function AboutPokemon({ navigation, route }: Props) {
                 hook.backgroundTypeColor.nameColor as string
               }
             />
+          </View>
+        )}
+
+        {hook.selectedTag === 2 && (
+          <View>
+            <Text>Hello</Text>
           </View>
         )}
       </View>
