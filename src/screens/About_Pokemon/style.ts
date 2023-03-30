@@ -75,4 +75,13 @@ export const styles = StyleSheet.create({
     gap: 48,
     paddingBottom: 10,
   },
+
+  pokemonTypesContainer: {
+    width: "100%",
+    flexDirection: "column",
+    flex: 1,
+    paddingHorizontal: 18,
+    gap: 48,
+    paddingBottom: 10,
+  },
 });
