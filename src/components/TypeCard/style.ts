@@ -22,9 +22,17 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     padding: 12,
     marginTop: 15,
+    flexDirection: "column",
+    gap: 19,
   },
   typeDescription: {
     fontSize: 20,
     fontWeight: "600",
+  },
+  descriptionElementsWrapper: {
+    flexDirection: "row",
+    padding: 6,
+    alignItems: 'center',
+    justifyContent: 'space-between'    
   },
 });
